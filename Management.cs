@@ -169,5 +169,27 @@ namespace AddressBookLinq
                 Console.WriteLine("eMail:- " + dr.Field<string>("Email"));
             }
         }
+        /// <summary>
+        /// UC 9
+        /// Add address book name and type column to data table
+        /// </summary>
+        public void AddAddressBookNameTypeColumn()
+        {
+            // Added addressbook name column
+            DataColumn column;
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "AddressBookName";
+            column.AllowDBNull = false;
+            column.DefaultValue = "Kalyan";
+            table.Columns.Add(column);
+            // Added contact type column
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "ContactType";
+            column.AllowDBNull = false;
+            column.DefaultValue = "Friends";
+            table.Columns.Add(column);
+        }
     }
 }
