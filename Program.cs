@@ -7,11 +7,13 @@ namespace AddressBookLinq
         static void Main(string[] args)
         {
             Management management = new Management();
-            /* management.UpdateContact("anirudh", "repala", "Address", "uppal");
-             management.DeleteContact("Ravi", "Kumar");
-             management.GetAllContacts();*/
+            management.UpdateContact("anirudh", "repala", "Address", "uppal");
+            management.DeleteContact("Ravi", "Kumar");
+            management.GetAllContacts();
             management.RetrieveByCity("Banglore");
             management.RetrieveByState("ts");
+            management.CountByCity("nlg");
+            management.CountByState("ts");
 
         }
     }
