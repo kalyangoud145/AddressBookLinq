@@ -76,5 +76,50 @@ namespace AddressBookLinq
             DataRow deleteContact = table.Select("FirstName = '" + firstName + "' and LastName = '" + lastName + "'").FirstOrDefault();
             table.Rows.Remove(deleteContact);
         }
+        /// <summary>
+        /// UC 6 Retrieves the contact by city
+        /// </summary>
+        /// <param name="city">The city.</param>
+        /// <param name="state">The state.</param>
+        public void RetrieveByCity(string city)
+        {
+            var contact = from person in table.AsEnumerable()
+                          where person.Field<string>("City") == city 
+                          select person;
+            foreach (DataRow dr in contact)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("FirstName:- " + dr.Field<string>("FirstName"));
+                Console.WriteLine("lastName:- " + dr.Field<string>("LastName"));
+                Console.WriteLine("Address:- " + dr.Field<string>("Address"));
+                Console.WriteLine("City:- " + dr.Field<string>("City"));
+                Console.WriteLine("State:- " + dr.Field<string>("State"));
+                Console.WriteLine("zip:- " + dr.Field<string>("Zip"));
+                Console.WriteLine("phoneNumber:- " + dr.Field<string>("phoneNumber"));
+                Console.WriteLine("eMail:- " + dr.Field<string>("Email"));
+            }
+        }
+        /// <summary>
+        /// Retrieves the contact by state
+        /// </summary>
+        /// <param name="state">The state.</param>
+        public void RetrieveByState( string state)
+        {
+            var contact = from person in table.AsEnumerable()
+                          where person.Field<string>("State") == state
+                          select person;
+            foreach (DataRow dr in contact)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("FirstName:- " + dr.Field<string>("FirstName"));
+                Console.WriteLine("lastName:- " + dr.Field<string>("LastName"));
+                Console.WriteLine("Address:- " + dr.Field<string>("Address"));
+                Console.WriteLine("City:- " + dr.Field<string>("City"));
+                Console.WriteLine("State:- " + dr.Field<string>("State"));
+                Console.WriteLine("zip:- " + dr.Field<string>("Zip"));
+                Console.WriteLine("phoneNumber:- " + dr.Field<string>("phoneNumber"));
+                Console.WriteLine("eMail:- " + dr.Field<string>("Email"));
+            }
+        }
     }
 }
