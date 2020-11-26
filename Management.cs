@@ -80,7 +80,6 @@ namespace AddressBookLinq
         /// UC 6 Retrieves the contact by city
         /// </summary>
         /// <param name="city">The city.</param>
-        /// <param name="state">The state.</param>
         public void RetrieveByCity(string city)
         {
             var contact = from person in table.AsEnumerable()
@@ -120,6 +119,29 @@ namespace AddressBookLinq
                 Console.WriteLine("phoneNumber:- " + dr.Field<string>("phoneNumber"));
                 Console.WriteLine("eMail:- " + dr.Field<string>("Email"));
             }
+        }
+        /// <summary>
+        /// UC 7 
+        /// Count contact by  city
+        /// </summary>
+        /// <param name="city">The city.</param>
+        public void CountByCity(string city)
+        {
+            var contact = from person in table.AsEnumerable()
+                          where person.Field<string>("City") == city 
+                          select person;
+            Console.WriteLine("Count of contacts in City :{0} is {1}", city, contact.Count());
+        }
+        /// <summary>
+        /// Count contact by state 
+        /// </summary>
+        /// <param name="city">The state.</param>
+        public void CountByState(string state)
+        {
+            var contact = from person in table.AsEnumerable()
+                          where  person.Field<string>("State") == state
+                          select person;
+            Console.WriteLine("Count of contacts in State :{0} is {1}", state, contact.Count());
         }
     }
 }
