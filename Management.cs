@@ -28,7 +28,7 @@ namespace AddressBookLinq
             // UC3 Inserting Data into Table
             table.Rows.Add("kalyan", "goud", "8-47", "nlg", "ts", "535501", "8975596720", "mkh@gmail.com");
             table.Rows.Add("bhanu", "nunna", "Sun nagar", "warangal", "ts", "546489", "8570456737", "ram@gmail.com");
-            table.Rows.Add("Ravi", "kumar", "Rain colony", "Hyd", "ap", "546362", "9878678593", "ravi@gmail.com");
+            table.Rows.Add("Ravi", "kumar", "Rain colony", "nlg", "ap", "546362", "9878678593", "ravi@gmail.com");
             table.Rows.Add("anirudh", "repala", "WhiteField", "Banglore", "Karnataka", "125445", "7206326427", "srinu@gmail.com");
         }
         /// <summary>
@@ -83,7 +83,7 @@ namespace AddressBookLinq
         public void RetrieveByCity(string city)
         {
             var contact = from person in table.AsEnumerable()
-                          where person.Field<string>("City") == city 
+                          where person.Field<string>("City") == city
                           select person;
             foreach (DataRow dr in contact)
             {
@@ -102,7 +102,7 @@ namespace AddressBookLinq
         /// Retrieves the contact by state
         /// </summary>
         /// <param name="state">The state.</param>
-        public void RetrieveByState( string state)
+        public void RetrieveByState(string state)
         {
             var contact = from person in table.AsEnumerable()
                           where person.Field<string>("State") == state
@@ -128,7 +128,7 @@ namespace AddressBookLinq
         public void CountByCity(string city)
         {
             var contact = from person in table.AsEnumerable()
-                          where person.Field<string>("City") == city 
+                          where person.Field<string>("City") == city
                           select person;
             Console.WriteLine("Count of contacts in City :{0} is {1}", city, contact.Count());
         }
@@ -139,9 +139,35 @@ namespace AddressBookLinq
         public void CountByState(string state)
         {
             var contact = from person in table.AsEnumerable()
-                          where  person.Field<string>("State") == state
+                          where person.Field<string>("State") == state
                           select person;
             Console.WriteLine("Count of contacts in State :{0} is {1}", state, contact.Count());
+        }
+        /// UC 8
+        /// <summary>
+        /// Gets all contacts in sorted order by persons name for a given city 
+        /// </summary>
+        /// <param name="city">The city.</param>
+        public void GetAllContactsInSortedOrderInCityOrderByName(string city)
+        {
+            var contact = from c in table.AsEnumerable()
+                          where c.Field<string>("City") == city
+                          orderby c.Field<string>("FirstName")
+                          select c;
+            foreach (DataRow dr in contact)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("FirstName:- " + dr.Field<string>("FirstName"));
+                Console.WriteLine("lastName:- " + dr.Field<string>("LastName"));
+                Console.WriteLine("Address:- " + dr.Field<string>("Address"));
+                Console.WriteLine("City:- " + dr.Field<string>("City"));
+                Console.WriteLine("State:- " + dr.Field<string>("State"));
+                Console.WriteLine("zip:- " + dr.Field<string>("Zip"));
+                Console.WriteLine("phoneNumber:- " + dr.Field<string>("phoneNumber"));
+                Console.WriteLine("eMail:- " + dr.Field<string>("Email"));
+                Console.WriteLine("phoneNumber:- " + dr.Field<string>("phoneNumber"));
+                Console.WriteLine("eMail:- " + dr.Field<string>("Email"));
+            }
         }
     }
 }
