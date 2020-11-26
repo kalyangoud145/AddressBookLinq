@@ -191,5 +191,18 @@ namespace AddressBookLinq
             column.DefaultValue = "Friends";
             table.Columns.Add(column);
         }
+        /// UC 10
+        /// <summary>
+        /// Get Count by ContactType
+        /// </summary>
+        /// <param name="type"></param>
+        public void GetCountByType( )
+        {
+            var element = from contact in table.AsEnumerable()
+                          group contact by contact.Field<string>("ContactType") into data
+                          select new { typename = data.Key, Count = data.Count() };
+
+            element.ToList().ForEach(element => Console.WriteLine($"ContactType : {element.typename} \t Count = {element.Count}"));
+        }
     }
 }
