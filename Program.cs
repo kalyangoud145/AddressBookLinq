@@ -16,6 +16,7 @@ namespace AddressBookLinq
             management.CountByState("ts");
             management.GetAllContactsInSortedOrderInCityOrderByName("nlg");
             management.AddAddressBookNameTypeColumn();
+            management.GetCountByType();
 
         }
     }
