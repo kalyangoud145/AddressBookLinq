@@ -8,6 +8,7 @@ namespace AddressBookLinq
         {
             Management management = new Management();
             management.UpdateContact("anirudh", "repala", "Address", "uppal");
+            management.DeleteContact("Ravi", "Kumar");
             management.GetAllContacts();
 
         }
