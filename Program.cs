@@ -6,15 +6,20 @@ namespace AddressBookLinq
     {
         static void Main(string[] args)
         {
+            Person person = new Person();
             Management management = new Management();
-            management.UpdateContact("anirudh", "repala", "Address", "uppal");
-            management.DeleteContact("Ravi", "Kumar");
+            person.FirstName = "Ravi";
+            person.LastName = "kumar";
+            management.UpdateContact(person, "Address", "kachiguda");
+            management.DeleteContact(person);
             management.GetAllContacts();
-            management.RetrieveByCity("Banglore");
-            management.RetrieveByState("ts");
-            management.CountByCity("nlg");
-            management.CountByState("ts");
-            management.GetAllContactsInSortedOrderInCityOrderByName("nlg");
+            person.City = "nlg";
+            management.RetrieveByCity(person);
+            person.State = "ts";
+            management.RetrieveByState(person);
+            management.CountByCity(person);
+            management.CountByState(person);
+            management.GetAllContactsInSortedOrderInCityOrderByName(person);
             management.AddAddressBookNameTypeColumn();
             management.GetCountByType();
 
