@@ -8,7 +8,7 @@ namespace AddressBookLinq
 {
     class Management
     {
-        
+
         // UC 1 Create a new DataTable
         DataTable table = new DataTable("AddressBook");
         /// <summary>
@@ -54,7 +54,7 @@ namespace AddressBookLinq
         {
             foreach (DataRow dr in table.AsEnumerable())
             {
-                Console.WriteLine("\n"+"FirstName:- " + dr.Field<string>("FirstName")
+                Console.WriteLine("\n" + "FirstName:- " + dr.Field<string>("FirstName")
                     + "\n" + "lastName:- " + dr.Field<string>("LastName")
                     + "\n" + "Address:- " + dr.Field<string>("Address")
                     + "\n" + "City:- " + dr.Field<string>("City")
@@ -62,7 +62,7 @@ namespace AddressBookLinq
                     + "\n" + "zip:- " + dr.Field<string>("Zip")
                     + "\n" + "phoneNumber:- " + dr.Field<string>("phoneNumber")
                     + "\n" + "eMail:- " + dr.Field<string>("Email")
-                    );        
+                    );
             }
 
         }
@@ -140,7 +140,7 @@ namespace AddressBookLinq
         public void CountByState(Person person1)
         {
             var contact = from person in table.AsEnumerable()
-                          where person.Field<string>("State") ==  person1.State
+                          where person.Field<string>("State") == person1.State
                           select person;
             Console.WriteLine("Count of contacts in State :{0} is {1}", person1.State, contact.Count());
         }
@@ -195,13 +195,34 @@ namespace AddressBookLinq
         /// Get Count by ContactType
         /// </summary>
         /// <param name="type"></param>
-        public void GetCountByType( )
+        public void GetCountByType()
         {
             var element = from contact in table.AsEnumerable()
                           group contact by contact.Field<string>("ContactType") into data
                           select new { typename = data.Key, Count = data.Count() };
 
             element.ToList().ForEach(element => Console.WriteLine($"ContactType : {element.typename} \t Count = {element.Count}"));
+        }
+        /// <summary>
+        /// Sort the contacts according to first name
+        /// </summary>
+        public void SortByName()
+        {
+            var element = from p in table.AsEnumerable()
+                          orderby p.Field<string>("FirstName")
+                          select p;
+            foreach (DataRow dr in element)
+            {
+                Console.WriteLine("\n" + "FirstName:- " + dr.Field<string>("FirstName")
+                    + "\n" + "lastName:- " + dr.Field<string>("LastName")
+                    + "\n" + "Address:- " + dr.Field<string>("Address")
+                    + "\n" + "City:- " + dr.Field<string>("City")
+                    + "\n" + "State:- " + dr.Field<string>("State")
+                    + "\n" + "zip:- " + dr.Field<string>("Zip")
+                    + "\n" + "phoneNumber:- " + dr.Field<string>("phoneNumber")
+                    + "\n" + "eMail:- " + dr.Field<string>("Email")
+                    );
+            }
         }
     }
 }
