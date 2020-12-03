@@ -208,9 +208,72 @@ namespace AddressBookLinq
         /// </summary>
         public void SortByName()
         {
-            var element = from p in table.AsEnumerable()
-                          orderby p.Field<string>("FirstName")
-                          select p;
+            var element = from person in table.AsEnumerable()
+                          orderby person.Field<string>("FirstName")
+                          select person;
+            foreach (DataRow dr in element)
+            {
+                Console.WriteLine("\n" + "FirstName:- " + dr.Field<string>("FirstName")
+                    + "\n" + "lastName:- " + dr.Field<string>("LastName")
+                    + "\n" + "Address:- " + dr.Field<string>("Address")
+                    + "\n" + "City:- " + dr.Field<string>("City")
+                    + "\n" + "State:- " + dr.Field<string>("State")
+                    + "\n" + "zip:- " + dr.Field<string>("Zip")
+                    + "\n" + "phoneNumber:- " + dr.Field<string>("phoneNumber")
+                    + "\n" + "eMail:- " + dr.Field<string>("Email")
+                    );
+            }
+        }
+        /// <summary>
+        /// Sort the contacts according to city
+        /// </summary>
+        public void SortByCity()
+        {
+            var element = from person in table.AsEnumerable()
+                          orderby person.Field<string>("City")
+                          select person;
+            foreach (DataRow dr in element)
+            {
+                Console.WriteLine("\n" + "FirstName:- " + dr.Field<string>("FirstName")
+                    + "\n" + "lastName:- " + dr.Field<string>("LastName")
+                    + "\n" + "Address:- " + dr.Field<string>("Address")
+                    + "\n" + "City:- " + dr.Field<string>("City")
+                    + "\n" + "State:- " + dr.Field<string>("State")
+                    + "\n" + "zip:- " + dr.Field<string>("Zip")
+                    + "\n" + "phoneNumber:- " + dr.Field<string>("phoneNumber")
+                    + "\n" + "eMail:- " + dr.Field<string>("Email")
+                    );
+            }
+        }
+        /// <summary>
+        /// Sort the contacts according to state
+        /// </summary>
+        public void SortByState()
+        {
+            var element = from person in table.AsEnumerable()
+                          orderby person.Field<string>("State")
+                          select person;
+            foreach (DataRow dr in element)
+            {
+                Console.WriteLine("\n" + "FirstName:- " + dr.Field<string>("FirstName")
+                    + "\n" + "lastName:- " + dr.Field<string>("LastName")
+                    + "\n" + "Address:- " + dr.Field<string>("Address")
+                    + "\n" + "City:- " + dr.Field<string>("City")
+                    + "\n" + "State:- " + dr.Field<string>("State")
+                    + "\n" + "zip:- " + dr.Field<string>("Zip")
+                    + "\n" + "phoneNumber:- " + dr.Field<string>("phoneNumber")
+                    + "\n" + "eMail:- " + dr.Field<string>("Email")
+                    );
+            }
+        }
+        /// <summary>
+        /// Sort the contacts according to zip
+        /// </summary>
+        public void SortByZip()
+        {
+            var element = from person in table.AsEnumerable()
+                          orderby person.Field<string>("Zip")
+                          select person;
             foreach (DataRow dr in element)
             {
                 Console.WriteLine("\n" + "FirstName:- " + dr.Field<string>("FirstName")
